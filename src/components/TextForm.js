@@ -47,7 +47,6 @@ export default function TextForm(props) {
             <div className="container" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <h1 >{props.heading}</h1>
                 <div className="mb-3">
-                    <label htmlFor="myBox" className="form-label">Example textarea</label>
                     <textarea className="form-control" id="myBox" style={{ backgroundColor: props.mode === 'light' ? 'white' : 'gray' }} value={text} onChange={handleUpChange} rows="8"></textarea>
                 </div>
                 <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert To Uppercase</button>
@@ -60,7 +59,7 @@ export default function TextForm(props) {
                 <h2>Your text summary</h2>
                 <p>{text.split(" ").length} words and {text.length} charactres</p>
                 <p>{0.008 * text.split(" ").length} Minutes to read</p>
-                <h2>Text Preview</h2>
+                <h2>Preview</h2>
                 <p>{text.length > 0 ? text : 'Enter something into the box to preview here!'}</p>
             </div>
         </>
