@@ -4,6 +4,7 @@ import About from './components/About';
 import NavBar from './components/NavBar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 
@@ -16,12 +17,10 @@ function App() {
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
       showAlert("Dark mode has been enabled!", "success");
-      document.title = "TextUtils Dark Mode";
     } else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode has been enabled!", "success");
-      document.title = "TextUtils Light Mode";
     }
   }
 
@@ -40,11 +39,16 @@ function App() {
 
   return (
     <>
-      <NavBar title="Text Utilizer" toggleMode={toggleMode} mode={mode} />
-      <Alert alert={alert} />
-      <div className="container my-3">
-        <TextForm heading="Enter the text to analyze below" showAlert={showAlert} mode={mode} />
-      </div>
+      <Router>
+        <NavBar title="Text Utilizer" toggleMode={toggleMode} mode={mode} />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Routes>
+            <Route  path="/" element={<TextForm heading="Try Text Utilizer - word counter, character counter, remove extra spaces" showAlert={showAlert} mode={mode} />} />
+            <Route  path="/about" element={<About mode={mode} />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
